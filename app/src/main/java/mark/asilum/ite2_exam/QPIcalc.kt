@@ -37,6 +37,32 @@ class QPIcalc : AppCompatActivity() {
         btnU9 = findViewById(R.id.btnU9)
         btnU9.isEnabled = false
 
+        val numEquiv = mapOf(
+            "A" to 4,
+            "B+" to 3.5,
+            "B" to 3,
+            "C+" to 2.5,
+            "C" to 2,
+            "D" to 1,
+            "F" to 0
+        )
+
+        var latestClickedLetterButton =""
+        var latestClickedNumberButton =0
+
+        //get the number equivalent of the letter grade
+        //after getting the letter grade, multiply the number equivalent to the unit of that grade
+            //unit is the number button
+        fun equiv(){
+            numEquiv.forEach{entry ->
+                Log.d("zzzzz","${entry.value}")
+//                if(entry.key == latestClickedLetterButton){
+//
+//                }
+        }
+
+
+
 
 
         btnA.setOnClickListener{
@@ -44,7 +70,8 @@ class QPIcalc : AppCompatActivity() {
             val etEquation: EditText
             etEquation = findViewById(R.id.etEquation)
             val value = btnA.text.toString()
-            Log.d("ZZZ123","Save $value and pass to next")
+            latestClickedLetterButton = value
+            Log.d("ZZZ123","Button clicked is $latestClickedLetterButton")
             if(etEquation.text.toString()=="Equation"){
                 etEquation.setText("($value * ")
             }else{
@@ -55,6 +82,7 @@ class QPIcalc : AppCompatActivity() {
                 }
 
             }
+            equiv()
             btnA.isEnabled=false
             btnBP.isEnabled=false
             btnB.isEnabled=false
@@ -159,7 +187,6 @@ class QPIcalc : AppCompatActivity() {
             val etEquation: EditText
             etEquation = findViewById(R.id.etEquation)
             val value = btnC.text.toString()
-            Log.d("ZZZ123","Save $value and pass to next")
             if(etEquation.text.toString()=="Equation"){
                 etEquation.setText("($value * ")
             }else{
@@ -252,6 +279,8 @@ class QPIcalc : AppCompatActivity() {
             }else{
                 etEquation.append("$value)")
             }
+            latestClickedNumberButton = value.toInt()
+            Log.d("ZZZ123","Button clicked is $latestClickedNumberButton")
             btnA.isEnabled=true
             btnBP.isEnabled=true
             btnB.isEnabled=true
@@ -344,7 +373,8 @@ class QPIcalc : AppCompatActivity() {
         btnEq.setOnClickListener{
             val qpiText: EditText
             qpiText = findViewById(R.id.etQPI)
-            qpiText.setText("Help")
+//            numEquiv.forEach{entry -> Log.d("zzzzz","${entry.key} : ${entry.value}")
+        }
 
         }
 
